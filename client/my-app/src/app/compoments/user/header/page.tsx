@@ -1,0 +1,199 @@
+"use client";
+import Link from 'next/link';
+import React, { useState, useEffect, ChangeEvent } from 'react';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
+import '@/app/styles/home.css'; // Update with your actual CSS file path
+import Swal from 'sweetalert2';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMessage } from '@fortawesome/free-solid-svg-icons';
+interface User {
+  id: string;
+  nameAccount: string;
+  img: string;
+}
+
+interface Exam {
+  id: string;
+  name: string;
+}
+
+export default function Page() {
+  const [login, setLogin] = useState<boolean>(false);
+  const [user, setUser] = useState<User | null>(null);
+  const [subjectList, setSubjectList] = useState<any[]>([]);
+  const [examList, setExamList] = useState<Exam[]>([]);
+  const [filteredExams, setFilteredExams] = useState<Exam[]>([]);
+  const [searchQuery, setSearchQuery] = useState<string>(''); // State để lưu giá trị input
+  const router = useRouter();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const idUserLogin = localStorage.getItem("keyLogin");
+      if (idUserLogin) {
+        try {
+          const userResponse = await axios.get('http://localhost:5000/userList');
+          const users = userResponse.data;
+          const currentUser = users.find((user: User) => user.id === idUserLogin);
+          if (currentUser) {
+            setUser(currentUser);
+            setLogin(true);
+          } else {
+            setLogin(false);
+          }
+        } catch (err) {
+          console.error('Error fetching user data:', err);
+        }
+      } else {
+        setLogin(false);
+      }
+
+      try {
+        const subjectResponse = await axios.get('http://localhost:5000/subjectList');
+        setSubjectList(subjectResponse.data);
+        
+        const examResponse = await axios.get('http://localhost:5000/examList');
+        setExamList(examResponse.data);
+        setFilteredExams(examResponse.data); // Initialize filtered exams
+      } catch (err) {
+        console.error('Error fetching data:', err);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleLogout = () => {
+    Swal.fire({
+      title: 'Bạn có chắc muốn đăng xuất?',
+      text: 'Bạn sẽ cần phải đăng nhập lại để sử dụng các chức năng khác.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Đăng xuất',
+      cancelButtonText: 'Hủy bỏ'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Thực hiện đăng xuất nếu người dùng xác nhận
+        localStorage.removeItem("keyLogin");
+        router.push('/pages/user/sign-in');
+        setLogin(false);
+        setUser(null);
+
+        Swal.fire('Đã đăng xuất!', '', 'success');
+      }
+    });
+   
+  };
+
+  const handleSearch = (event: ChangeEvent<HTMLInputElement>) => {
+    const query = event.target.value;
+    setSearchQuery(query); 
+    const filter = query.toUpperCase();
+    const filtered = examList.filter((exam) =>
+      exam.name.toUpperCase().includes(filter)
+    );
+    setFilteredExams(filtered);
+  };
+  return (
+    <div>
+      <header className="header">
+        <div className="ipad-header-top">
+          <div className="header-left">
+            <a href="">
+              <img
+                src="https://static.vecteezy.com/system/resources/previews/009/182/690/original/thi-letter-logo-design-with-polygon-shape-thi-polygon-and-cube-shape-logo-design-thi-hexagon-logo-template-white-and-black-colors-thi-monogram-business-and-real-estate-logo-vector.jpg"
+                alt="Logo"
+                className="logo"
+              />
+            </a>
+            <p>OnlineTest</p>
+          </div>
+          <div className="container1">
+      <form id="form-input">
+        <input
+          type="search"
+          placeholder="Tìm kiếm đề"
+          onChange={handleSearch}
+          className="search-input"
+        />
+        {searchQuery && ( // Chỉ hiển thị danh sách nếu có giá trị trong ô input
+          <ul className="myUL">
+            {filteredExams.length > 0 ? (
+              filteredExams.map((exam) => (
+                <li key={exam.id} className="search-results">
+                  <Link href={`/pages/user/exam/${exam.id}`}>
+                    {exam.name}
+                  </Link>
+                </li>
+              ))
+            ) : (
+              <li className="search-results">Không có kết quả phù hợp</li>
+            )}
+          </ul>
+        )}
+      </form>
+    </div>
+        </div>
+        <div className="header-right">
+          <nav className="header-nav">
+            <Link href="/pages/user/home" className="nav-item">Trang chủ</Link>
+            <Link href="/pages/user/courses" className="nav-item">Trang khóa thi</Link>
+            <Link href="/pages/user/contact" className="nav-item">Liên hệ</Link>
+          </nav>
+          <div id="loginOut">
+            {!login ? (
+              <div className="btn-login">
+                <Link href="/pages/user/sign-in" className="nav-item">Đăng nhập</Link>
+                <Link href="/pages/user/sign-up" className="nav-item">Đăng ký</Link>
+              </div>
+            ) : (
+              <div className="user-info">
+                <img
+                  src={user?.img || ''}
+                  alt="User Avatar"
+                  className="user-avatar"
+                  onClick={() => router.push('/pages/user/profile')}
+                />
+                <span>Hi, {user?.nameAccount}</span>
+                <button onClick={handleLogout} className="logout-btn">Đăng xuất</button>
+              </div>
+            )}
+          </div>
+        </div>
+      </header>
+      <div className="chat">
+  <div id="chatcontainer">
+    {/* <div class="left-chat" >
+    <h2>Trợ lí học tập</h2>
+    <div class="chat-container" >
+      <div class="chat-content" id="chatList">
+        <div class="recei-container" >
+          <div class="mess-recei">dm cuoc doi</div>
+        </div>
+        <div class="send-container">
+          <div class="mess-send">chi co lam, chiu kho, can cu bu sieng nang</div>
+        </div>
+      </div>
+      <div class="input-send">
+        <input type="text" id="inputMess">
+        <button id="submitMess">send</button>
+      </div>
+    </div>
+  </div> */}
+  </div>
+  <div className="right-chat">
+    <button
+      type="button"
+      className="btn btn-primary"
+      data-toggle="modal"
+      data-target="#exampleModalCenter"
+      id="messFb"
+    >
+              <FontAwesomeIcon icon={faMessage} width={20} height={20} />
+    </button>
+  </div>
+</div>
+
+    </div>
+  );
+}

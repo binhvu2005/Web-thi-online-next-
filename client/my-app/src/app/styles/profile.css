@@ -1,0 +1,139 @@
+/* profile.css */
+.content-container {
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.private-list {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.private-list a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.choose-private {
+  padding: 12px 20px;
+  border-radius: 8px;
+  background-color: #e9ecef;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.choose-private:hover {
+  background-color: #dee2e6;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.private-info {
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.image-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-image {
+  width: 150px;
+  height: 500px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+}
+
+.profile-name {
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+.btn-change-avatar,
+.btn-update-profile,
+.btn-change-password {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #28a745;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 5px;
+  transition: background-color 0.3s;
+}
+
+.btn-change-avatar:hover,
+.btn-update-profile:hover,
+.btn-change-password:hover {
+  background-color: #218838;
+}
+
+.user-information {
+  margin-top: 20px;
+}
+
+.info-title {
+  text-align: center;
+  padding: 12px;
+  background-color: #343a40;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.info-item:last-child {
+  border-bottom: none;
+}
+
+.info-item label {
+  font-weight: 600;
+  color: #495057;
+}
+
+.info-item span {
+  color: #6c757d;
+}
+/* Styling for the Change Avatar button */
+.change-avatar-button {
+  display: inline-block;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  background-color: #99f530; /* Green background */
+
+
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.change-avatar-button:hover {
+  background-color: #f9fc56; /* Darker green on hover */
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+.change-avatar-button:focus {
+  outline: none;
+}
+
+.change-avatar-button:active {
+  background-color: #b9b720; /* Even darker green on click */
+  transform: scale(0.98); /* Slightly smaller on click */
+}

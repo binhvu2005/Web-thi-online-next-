@@ -1,0 +1,309 @@
+/* General Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.main-background {
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+.main-subject {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 20px;
+}
+
+h1, h2, h3 {
+  margin: 0;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+/* Exam Details */
+.perform {
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: #d6d5d5;
+  border-radius: 10px;
+}
+
+.number-exam {
+  font-size: 24px;
+  font-weight: bold;
+  background-color: #e0e0e0;
+  padding: 10px;
+  border-radius: 5px;
+  margin-right: 20px;
+}
+
+.question-content {
+  flex-grow: 1;
+}
+
+.Info-detail {
+  display: flex;
+}
+
+#img-detail {
+  width: 300px;
+  height: 200px;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+.Information-test {
+  max-width: 600px;
+}
+
+.star i {
+  color: gold;
+  margin-right: 2px;
+}
+
+.start-exam {
+  display: inline-flex;
+  align-items: center;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.start-exam:hover {
+  background-color: #0056b3;
+}
+
+/* Reference Exams */
+.list-subject {
+  margin-top: 20px;
+}
+
+#referenceSubject {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.exam-item {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 10px;
+  max-width: 300px;
+  text-align: center;
+}
+
+.exam-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.exam-item button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.exam-item button:hover {
+  background-color: #0056b3;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  list-style-type: none;
+  padding: 0;
+}
+
+.pagination a {
+  margin: 0 5px;
+  text-decoration: none;
+  color: #007bff;
+}
+
+.pagination .active {
+  font-weight: bold;
+  color: #0056b3;
+}
+
+/* Comments Section */
+.comment-form {
+  margin-bottom: 20px;
+}
+
+.comment-form textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.comment-form button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.comment-form button:hover {
+  background-color: #0056b3;
+}
+
+.comments-list {
+  margin-top: 20px;
+}
+
+.comment-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.comment-item img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.comment-content {
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 4px;
+  flex: 1;
+}
+
+.comment-content p {
+  margin: 5px 0;
+}
+
+.comment-content button {
+  margin-right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #333;
+}
+
+.comment-content button:hover {
+  color: #007bff;
+}
+
+.submit-menu {
+  background-color: #FCBA2C;
+  padding: 10px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.c {
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.c.answered {
+  background-color: #28a745; /* Green when answered */
+  color: white;
+}
+
+.c.current {
+  background-color: #007bff; /* Blue for current question */
+  color: white;
+}
+
+.c:hover {
+  background-color: #ddd;
+}
+/* exam.css */
+.comment {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.comment-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.comment-content {
+  flex: 1;
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+.comment-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.comment-form {
+  margin-bottom: 1rem;
+}
+
+.comment-form textarea {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 0.5rem;
+}
+
+.pagination {
+  display: flex;
+  list-style-type: none;
+  gap: 0.5rem;
+}
+
+.pagination .active {
+  font-weight: bold;
+}
+
+.start-exam {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #0070f3;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.start-exam:hover {
+  background-color: #005bb5;
+}
+ 
